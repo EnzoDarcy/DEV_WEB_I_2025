@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Funcionários</title>
+    <script src="cadastro_funcionario.js"></script>
+</head>
+<body>
+    <form id="formCadastroFuncionario" action="executa_acao_funcionario.php" method="post">
+        <input type="hidden" name="acao" value="cadastrar">
+        <input type="hidden" name="id" value="<?php echo $_GET["id"]?$_GET["id"]:"" ?>"/>
+        
+        
+        <fieldset>
+            <legend>Cadastro - Funcionários</legend>
+            <label for="nome">Nome: </label><input type="text" name="nome" id="nome">
+            <label for="salario">Salario: </label><input type="text" name="salario" id="salario">
+            <label for="telefone">Telefone: </label><input type="text" name="telefone" id="telefone">
+        </fieldset>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
