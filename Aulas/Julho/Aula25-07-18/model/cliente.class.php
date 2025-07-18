@@ -1,0 +1,30 @@
+<?php
+    include("class_pai.class.php");
+    class Cliente extends ClassePai {
+        public $nome;
+        public $telefone;
+
+        public function __construct($id, $nome, $telefone) {
+            parent::__construct($id, "../db/cliente.txt");
+            $this->nome = $nome;
+            $this->preco = $telefone;
+        }
+
+        function montaLinhaDados()
+        {
+            return $this->id.self::SEPARADOR.$this->nome.self::SEPARADOR.$this->telefone;
+        }    
+        static public function listar() {
+            $arquivo = fopen("../db/cliente.txt", "r");
+            $retorno = [];
+            while(!feof($arquivo)){
+                $linha = fgets($arquivo);
+                if(empty($linha))
+                    continue;
+                $dados = explode(self::SEPARADOR, $linha);
+                array_push($retorno, new Cliente($dados[0], $dados[1], $dados[2]));
+            }
+            return $retorno;
+        }
+    }
+?>
