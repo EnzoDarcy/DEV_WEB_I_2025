@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-    <form action="" method="post">
-        <input type="text" name="email" id="email" value="exemplo@gmail.com" placeholder="Email">
-        <input type="password" name="senha" id="senha" value="teste123" placeholder="Senha">
-        <br/>
-        <button type="submit">Logar</button>
-    </form>
+    <div class="login-container">
+        <form action="" method="post">
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" value="exemplo@gmail.com" placeholder="Email">
+
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" value="teste123" placeholder="Senha">
+
+            <button type="submit">Logar</button>
+        </form>
+    </div>
 
     <?php
     session_start();

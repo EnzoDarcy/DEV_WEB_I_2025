@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remoção de Cliente</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
     <form id="formRemocaoCliente" action="executa_acao_cliente.php" method="post">

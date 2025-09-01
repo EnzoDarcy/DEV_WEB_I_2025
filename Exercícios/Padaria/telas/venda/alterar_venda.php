@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alteracao de Venda</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
     <form id="formAlteracaoVenda" action="executa_acao_venda.php" method="post">

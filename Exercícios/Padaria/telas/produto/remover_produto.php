@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remoção de Produto</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
     <form id="formRemocaoProduto" action="executa_acao_produto.php" method="post">

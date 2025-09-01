@@ -17,3 +17,4 @@
     echo "Alterado com sucesso";
   }
 ?>
+    <link rel="stylesheet" href="../../style.css">
