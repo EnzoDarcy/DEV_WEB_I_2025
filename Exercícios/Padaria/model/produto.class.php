@@ -1,17 +1,17 @@
 <?php
     require_once("pai.class.php");
-    class Cliente extends ClassePai {
+    class Produto extends ClassePai {
         public $nome;
-        public $telefone;
-        public $nomeArquivo = "../../arquivos/clientes.txt";
+        public $preco;
+        public $nomeArquivo = "../../arquivos/produtos.txt";
         
-        public function __construct($id, $nome, $telefone) {
+        public function __construct($id, $nome, $preco) {
             parent::__construct($id, $this->nomeArquivo);
             $this->nome = $nome;
-            $this->telefone = $telefone;
+            $this->preco = $preco;
         }
         public function montaLinhaDados() {
-            return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->telefone;
+            return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->preco;
         }
          
         static public function listar($nomeArquivo, $filtroNome) {
@@ -23,7 +23,7 @@
                     continue;
                 $dados = explode(self::SEPARADOR, $linha);
                 if(str_contains($dados[1], $filtroNome)){
-                    array_push($retorno, new Cliente($dados[0], $dados[1], $dados[2]));
+                    array_push($retorno, new Produto($dados[0], $dados[1], $dados[2]));
                 }
                 
             }
@@ -31,6 +31,16 @@
         }
 
         
+        static function pegaProdutoPorID($id) {
+            $arquivo = fopen("../../arquivos/produtos.txt", "r");
+            while (($linha = fgets($arquivo)) !== false) {
+                $dados = explode(self::SEPARADOR, $linha);
+                if ($dados[0] == $id) {
+                    return $dados;
+                }
+            }
+        }
+
     }
 
     //Serve como a tela de cadastrar

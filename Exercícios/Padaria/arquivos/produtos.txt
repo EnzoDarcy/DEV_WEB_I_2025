@@ -1,0 +1,4 @@
+1#Maça#10
+2#Banana#20
+3#Totanka#40
+4#Eanxia#80

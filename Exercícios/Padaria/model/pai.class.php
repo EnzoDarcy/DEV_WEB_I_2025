@@ -12,19 +12,25 @@
             $this->nomeArquivo = $nomeArquivo;
         }
 
-        public function pegaUltimoId($nomeArquivo) {
-            $arquivo = fopen($nomeArquivo, "r");
+        public function pegaUltimoId() {
+            $arquivo = fopen($this->nomeArquivo, "r");
+            $dados = "";
             while (($linha = fgets($arquivo)) !== false) {
-                
+                $dados = explode(self::SEPARADOR, $linha);
             }
+            if (empty($dados)) {
+                return 0;
+            }
+            return $dados[0];
         }
 
-        public function cadastrar($cadastrado, $nomeArquivo) {
-            $arquivo = fopen($nomeArquivo, "a");
-            fwrite($arquivo, $cadastrado . "\n");
+        public function cadastrar() {
+            $arquivo = fopen($this->nomeArquivo, "a");
+            $this->id = $this->pegaUltimoId() + 1;
+            fwrite($arquivo, $this->montaLinhaDados() . "\n");
         }
 
-        public function remover($id, $nomeArquivo) {
+        static public function remover($id, $nomeArquivo) {
             $arquivo = fopen($nomeArquivo, "r+");
             $acumulador = "";
             while (($linha = fgets($arquivo)) !== false) {
@@ -42,10 +48,25 @@
             fclose($arquivo);
         }
 
-        public function alterar() {
-            
+        static public function alterar($id, $nomeArquivo, $alterante) {
+            $arquivo = fopen($nomeArquivo, "r+");
+            $acumulador = "";
+            while (($linha = fgets($arquivo)) !== false) {
+                $dados = explode(self::SEPARADOR, $linha);
+                if ($dados[0] == $id) {
+                    $acumulador = $acumulador . $alterante . "\n";
+                }
+                else {
+                    $acumulador = $acumulador . $linha;
+                }
+            }
+            ftruncate($arquivo, 0);
+            rewind($arquivo);
+            fwrite($arquivo, $acumulador);
+            fclose($arquivo);
         }
 
-        // abstract public function listar();
+        abstract public function montaLinhaDados();
+        static abstract public function listar($nomeArquivo, $filtroNome);
     }
 ?>

@@ -1,17 +1,17 @@
 <?php
     require_once("pai.class.php");
-    class Cliente extends ClassePai {
-        public $nome;
-        public $telefone;
-        public $nomeArquivo = "../../arquivos/clientes.txt";
+    class Usuario extends ClassePai {
+        public $email;
+        public $senha;
+        public $nomeArquivo = "../../arquivos/usuarios.txt";
         
-        public function __construct($id, $nome, $telefone) {
+        public function __construct($id, $email, $senha) {
             parent::__construct($id, $this->nomeArquivo);
-            $this->nome = $nome;
-            $this->telefone = $telefone;
+            $this->email = $email;
+            $this->senha = $senha;
         }
         public function montaLinhaDados() {
-            return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->telefone;
+            return $this->id . self::SEPARADOR . $this->email . self::SEPARADOR . $this->senha;
         }
          
         static public function listar($nomeArquivo, $filtroNome) {
@@ -22,15 +22,15 @@
                 if(empty($linha))
                     continue;
                 $dados = explode(self::SEPARADOR, $linha);
-                if(str_contains($dados[1], $filtroNome)){
-                    array_push($retorno, new Cliente($dados[0], $dados[1], $dados[2]));
+                if(str_contains($dados[1], $filtroNome)){   
+                    array_push($retorno, new Usuario($dados[0], $dados[1], $dados[2]));
                 }
                 
             }
             return $retorno;
         }
 
-        
+
     }
 
     //Serve como a tela de cadastrar
