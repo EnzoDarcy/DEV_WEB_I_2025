@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Vendas</title>
+    <title>Lista de Funcionarios</title>
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
     <form method="post">
-        <label>Produto:</label><input name="filtro"/>
+        <label>Nome:</label><input name="filtro"/>
         <button>Filtrar</button>
     </form>
     <?php
-    include("../../service/venda.service.php");
+    include("../../service/funcionario.service.php");
     $filtro = isset($_POST["filtro"])?$_POST["filtro"]:"";
-    listarVenda($filtro);
+    listarFuncionario($filtro);
     ?>
 </body>
 </html>

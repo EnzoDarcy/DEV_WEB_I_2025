@@ -1,17 +1,17 @@
 <?php
     require_once("pai.class.php");
-    class Cliente extends ClassePai {
+    class funcionario extends ClassePai {
         public $nome;
-        public $telefone;
-        public $nomeArquivo = "../../arquivos/clientes.txt";
+        public $salario;
+        public $nomeArquivo = "../../arquivos/funcionarios.txt";
         
-        public function __construct($id, $nome, $telefone) {
+        public function __construct($id, $nome, $salario) {
             parent::__construct($id, $this->nomeArquivo);
             $this->nome = $nome;
-            $this->telefone = $telefone;
+            $this->salario = $salario;
         }
         public function montaLinhaDados() {
-            return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->telefone;
+            return $this->id . self::SEPARADOR . $this->nome . self::SEPARADOR . $this->salario;
         }
          
         static public function listar($nomeArquivo, $filtroNome) {
@@ -23,15 +23,15 @@
                     continue;
                 $dados = explode(self::SEPARADOR, $linha);
                 if(str_contains($dados[1], $filtroNome)){
-                    array_push($retorno, new Cliente($dados[0], $dados[1], $dados[2]));
+                    array_push($retorno, new Funcionario($dados[0], $dados[1], $dados[2]));
                 }
                 
             }
             return $retorno;
         }
 
-        static function pegaClientePorID($id) {
-            $arquivo = fopen("../../arquivos/clientes.txt", "r");
+        static function pegaFuncionarioPorID($id) {
+            $arquivo = fopen("../../arquivos/funcionarios.txt", "r");
             while (($linha = fgets($arquivo)) !== false) {
                 $dados = explode(self::SEPARADOR, $linha);
                 if ($dados[0] == $id) {

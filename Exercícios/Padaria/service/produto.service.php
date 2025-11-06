@@ -30,6 +30,11 @@
         echo "</tbody></table>";
     }
 
+    function listarProdutoArray() {
+        $produtos = Produto::listar("../../arquivos/produtos.txt", "");
+        return $produtos;
+    }
+
     // cadastrarCliente("Enzo Ferrari", "Vroom Vroom");
     // removerCliente(4);
     // alterarCliente(5, "Enzo Ferrari", "Vroom");
